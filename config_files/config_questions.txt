@@ -1,0 +1,78 @@
+# This config file contains questions and the corresponding answers for the Q&A of the webpages.
+# Format:
+# Q: "Write your question"
+# A: "Write your corresponding answer"
+# Q: "Write your next question"
+# etc.
+
+##### Start of questions #####
+
+Q: How can I open or close samples for a series/study?
+A: The first column of the series (usually the GSE/SRP number) contains the symbol "⯈". Just click this symbol and the corresponding samples/runs will appear. If you want to close it again
+just click "⯅" (which appears when samples/runs are opened) or click the <i>RESET</i> button (caution: everything will be reseted then!).
+
+Q: How can I show the complete text of a table cell?
+A: If the text of a table cell is cut off, you can make the whole text visible by clicking on <b>+</b> at the beginning of the text. If the text is fully shown, you can close it 
+again by clicking <b>-</b> (which appears when text is completely shown).
+
+Q: How do I open and close the filter panel?
+A: To filter the meta data, simply click on the button called <b>Filter</b> in the top left corner. A filter panel will appear at the left side of your screen. To close the filter
+panel again, click on a different location of your screen or use the "<b>↩</b>" button in the top left corner of the filter panel. 
+
+Q: How can I reset the page?
+A: If you have e.g. filtered and now want to reset the page, open the filter panel and click on the button, called <b>Reset</b>, in the top right corner of the filter panel.
+
+Q: What are the different filter options for GEO and internal data and how do I filter?
+A: If you open the filter panel with the <b>Filter</b> button, you can see three different filter options: <b>Series filter</b>, <b>Sample filter</b> and <b>Any term</b> at the top 
+of the filter panel. The currently selected filter option is shown on a dark blue background. By clicking on the corresponding filter option, you can open filter criterias for the 
+series meta data, sample meta data or look out for any matching term. You can use multiple of the different filter criterias for one filter option: e.g. you can use both <i>title</i>
+and <i>summary</i> to filter the series meta data. Only series that match both criterias will remain.
+
+Q: What are the different filter options for SRA data and how do I filter?
+A: If you open the filter panel with the <b>Filter</b> button, you can see three different filter options: <b>Study filter</b>, <b>Run filter</b> and <b>Any term</b> at the top 
+of the filter panel. The currently selected filter option is shown on a dark blue background. By clicking on the corresponding filter option, you can open filter criterias for the 
+study meta data, run meta data or look out for any matching term. You can use multiple of the different filter criterias for one filter option: e.g. you can use both <i>title</i>
+and <i>summary</i> to filter the study meta data. Only studies that match both criterias will remain.
+
+Q: I filtered the sample/run meta data, but there are samples/runs which don't fullfill the filter criteria?
+A: This is an artifact of the filter algorithm. If only one of the samples/runs from a series/study matches the filter criteria, the series/study and all other samples/runs will be shown. Same story for
+the anyterm filter.
+
+Q: How does the date filter criteria work?
+A: There are always two <i>date-boxes</i> to filter for dates. The two boxes (each can be assigned with a different date) represent a <i>date-range</i>. When only filling out the 
+first (left) date-box, all meta data will be shown after filtering, whose corresponding date is between the date you selected and today. When only filling out the second (right)
+date-box, all meta data will be shown after filtering, whose corresponding date is between the beginning of records and your selected date. If you fill out both date-boxes, all meta
+data will be shown after filtering, whose corresponding date is between your first selected date (left box) and your second selected date (right box). If you want to search for a 
+specific date (e.g. filter all series from the January 9th 2024) both date-boxes have to contain the same date.
+
+Q: How can I download data?
+A: Therefore choose your data (by filtering) and then simply click on <b>Download</b>. All series and sample meta data that are shown on the webpage are downloaded in two tab-separated 
+files (one containing the series meta data; the other containing the sample meta data). You can easily read them in, e.g. using R with the command: <i>read.delim("fileName", 
+header=TRUE)</i>.
+
+Q: How can I switch between different webpages?
+A: There is a link to the other webpages in the top blue bar, next to the <b>Q&A</b> link. Those links are called <b>Internal data</b> and/or <b>GEO data</b> and/or <b>SRA data</b>.
+
+Q: How does conditional filtering work?
+A: Conditional filtering is pretty useful. You can then filter more effectively. There are three different conditional filter words: <b>AND</b>, <b>OR</b> and <b>NOT</b>. You can 
+combine them to filter within one filter criteria (e.g. title or summary). <b>Caution</b>: It is important to note that these conditional filter words only work when written in 
+capital letters: <i>HSV AND HFF</i> will work, but <i>HSV and HFF</i> not! Also note that conditional filtering can't be used for characteristics and any term filter.
+
+Q: How does the conditional filter word <b>AND</b> work?
+A: With <i>AND</i>, you can filter for meta data that contain both (or more, if you have multiple AND) words in your chosen filter criteria. Write for example <i>HSV AND HFF</i> 
+in the filter criteria <i>Series_title</i> of the series filter option to filter for all series that have the word <i>HSV</i> as well as <i>HFF</i> in their title. If a series 
+has e.g. only HSV in its <i>title</i>, but not <i>HFF</i>, it will not appear after filtering.
+
+Q: How does the conditional filter word <b>OR</b> work?
+A: With <i>OR</i>, you can filter for meta data that contain only one or both (or more, if you have mutliple OR) word(s) in your chosen filter criteria. Write for example <i>ChIp OR
+Atac</i> in the filter criteria <i>Series_overall_design</i> of the series filter option to filter for all series that have either the word <i>ChIp</i> or <i>Atac</i> or both in its
+overall design. 
+
+Q: How does the conditional filter word <b>NOT</b> work?
+A: First to note is that the conditional filter word <i>NOT</i> has to be always combined with another conditional filter word (<i>AND</i> or <i>OR</i>), unless it is used alone.
+E.g. <i>NOT ChIp</i> is correct, whereas <i>ChiP NOT Atac</i> is incorrect.
+You can specify words with <i>NOT</i>, the meta data should not contain. Write e.g. <i>ChIp AND NOT Atac</i> in the filter criteria <i>Series_overall_design</i> of the series filter
+option to filter for all series that contain the word <i>ChIp</i>, but not the word <i>Atac</i> in their overall design. If a series hasn't <i>ChiP</i> in its overall design or contains
+the word <i>ChIp</i> but also <i>Atac</i> in its overall design, the series won't be shown after filtering.
+
+### End of file ###

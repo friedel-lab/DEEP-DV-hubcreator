@@ -1,0 +1,83 @@
+# This file contains the columns of the SRA metadata, which will be shown on the SRA metadata webpage.
+# Format:
+# column_name: x
+# x is either y (for yes -> column will be displayed) or n (for no -> column won't be displayed)
+
+>Study columns:
+
+study_accession: y
+Virus: y
+study_title: y
+organism_taxid: n
+organism_name: y
+bioproject: y
+
+>Run columns:
+
+run_accession: y
+study_accession: y
+Virus: y
+experiment_title: y
+library_name: n
+organism_taxid: n
+organism_name: y
+sample_accession: n
+sample_title: n
+biosample: n
+experiment_accession: y
+experiment_desc: y
+instrument_model_desc: n
+total_spots: n
+total_size: n
+instrument: y
+run_total_spots: n
+run_total_bases: n
+run_alias: n
+experiment_alias: n
+ena_fastq_http: n
+ena_fastq_http_1: n
+ena_fastq_http_2: n
+ena_fastq_ftp: n
+ena_fastq_ftp_1: n
+ena_fastq_ftp_2: n
+library_strategy: y
+library_source: n
+library_selection: n
+library_layout: n
+instrument_model: n
+public_filename: n
+public_url: n
+public_size: n
+public_date: y
+public_md5: n
+public_version: n
+public_semantic_name: n
+public_supertype: n
+public_sratoolkit: n
+aws_url: n
+aws_free_egress: n
+aws_access_type: n
+ncbi_url: n
+ncbi_free_egress: n
+ncbi_access_type: n
+gcp_url: n
+gcp_free_egress: n
+gcp_access_type: n
+strain: n
+gssr_id: n
+lsid: n
+material_type: n
+project: n
+sample_id: n
+research_project: n
+work_request: n
+product_order: n
+product_part_number: n
+root_sample_id: n
+collection date: n
+analysis_type: n
+library_type: n
+specific host: n
+isolation-source: n
+geographic location (country and/or sea, region): n
+SRA_characteristics: y

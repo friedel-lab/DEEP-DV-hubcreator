@@ -1,0 +1,145 @@
+config file for viruses to get extracted from GEO and SRA
+
+This file consists of two parts: 
+    1. List containing virus categories
+    2. List containing abbreviation and synonyms for each virus of each category
+
+1. Virus categories list:
+
+Please enter your virus categories in the dotted box according to the following scheme:
+
+> virus_category
+
+> next_virus_category
+
+------------------------------------------------------------------------------
+
+> herpesvirus
+
+> polyomavirus
+
+> adenovirus
+
+------------------------------------------------------------------------------
+
+
+2. Virus synonym list:
+
+Please enter your virus in the dotted box according to the following scheme:
+
+> virus_abbreviation
+virus_synonym_1, virus_synonym_2, ..., virus_synonym_x
+
+> next_virus_abbreviation
+
+Please pay attention to add new viruses into the correct virus_category. Each category is indicated by <virus_category> at the beginning of the section.
+If you add virus synonyms of viruses from a new category please first add the indicator <virus_category> at the beginning.
+
+------------------------------------------------------------------------------
+
+<herpesvirus>
+
+> HSV-1
+HHV1, HHV-1, HSV1, herpes simplex virus-1, herpes simplex virus 1, human alphaherpesvirus 1, human alpha herpesvirus 1, human herpesvirus 1
+
+> HSV-2
+HHV2, HHV-2, HSV2, herpes simplex virus-2, herpes simplex virus 2, human alphaherpesvirus 2, human alpha herpesvirus 2, human herpesvirus 2
+
+> VZV
+HHV3, HHV-3, Varicella zoster virus, human herpesvirus 3, human alphaherpesvirus 3, human alpha herpesvirus 3 
+
+> EBV
+HHV4, HHV-4, Epstein–Barr virus, Epstein Barr virus, human gammaherpesvirus 4, human-gammaherpesvirus 4, human gamma herpesvirus 4, human herpesvirus 4
+
+> HCMV
+HHV5, HHV-5, human betaherpesvirus 5, human-betaherpesvirus 5, human cytomegalovirus, human beta herpesvirus 5, human herpesvirus 5
+
+> HHV-6
+HHV6, HHV-6A, HHV6A, HHV6-B, HHV6B, human herpesvirus 6, human betaherpesvirus 6A, human betaherpesvirus 6B, human-betaherpesvirus 6A, human-betaherpesvirus 6B, human beta herpesvirus 6A, human beta herpesvirus 6B
+
+> HHV-7
+HHV7, human betaherpesvirus 7, human-betaherpesvirus 7, human beta herpesvirus 7, human herpesvirus 7
+
+> KSHV
+HHV8, HHV-8, human gammaherpesvirus 8, Kaposi's sarcoma-associated herpesvirus, human gamma herpesvirus 8, human-gammaherpesvirus 8, human herpesvirus 8
+
+> MCMV
+mouse cytomegalovirus, murid betaherpesvirus 1, MuHV-1, MuHV-1, murid betaherpesvirus 2, MuHV-2, MuHV-2, murine cytomegalovirus
+
+> CMV
+cytomegalovirus
+
+> MHV68
+murine gammaherpesvirus 68, murid gammaherpesvirus 68, MuHV-68, murid gammaherpesvirus 4
+
+<polyomavirus>
+
+> BKPyV
+human polyomavirus 1, BK polyomavirus, BK virus, BKV
+
+> JCPyV
+human polyomavirus 2, JC polyomavirus, JC virus, John Cunningham virus
+
+> KIPyV
+human polyomavirus 3, KI polyomavirus, KI virus
+
+> WUPyV
+human polyomavirus 4, WU polyomavirus, WU virus
+
+> MCPyV
+human polyomavirus 5, Merkel cell polyomavirus, MCV
+
+> HPyV6
+human polyomavirus 6
+
+> HPyV7
+human polyomavirus 7
+
+> TSPyV
+human polyomavirus 8, Trichodysplasia spinulosa polyomavirus, Trichodysplasia spinulosa-associated polyomavirus
+
+> HPyV9
+human polyomavirus 9
+
+> MWPyV
+human polyomavirus 10, MW polyomavirus, MXPyV, MX polyomavirus
+
+> STLPyV
+human polyomavirus 11, STL polyomavirus, Saint Louis polyomavirus
+
+> HPyV12
+human polyomavirus 12, Sorex araneus polyomavirus 1
+
+> NJPyV
+human polyomavirus 13, New Jersey polyomavirus
+
+> LIPyV
+human polyomavirus 14, Lyon IARC polyomavirus
+
+<adenovirus>
+
+> HAdVA
+HAdV-A, human mastadenovirus A
+
+> HAdVB
+HAdV-B, human mastadenovirus B
+
+> HAdVC
+HAdV-C, human mastadenovirus C
+
+> HAdVD
+HAdV-D, human mastadenovirus D
+
+> HAdVE
+HAdV-E, human mastadenovirus E
+
+> HAdVF
+HAdV-F, human mastadenovirus F
+
+> HAdVG
+HAdV-G, human mastadenovirus G
+
+> HAdV
+Human adenovirus, adenovirus
+
+------------------------------------------------------------------------------

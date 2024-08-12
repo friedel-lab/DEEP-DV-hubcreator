@@ -1,0 +1,30 @@
+# This is the file containing columns which can get selected and will be shown on the internal meta data webpage.
+
+>Series columns:
+
+Series_geo_accession: y
+Virus: y
+title: y
+summary: y
+overall design: y
+contributor: y
+supplementary file: n
+status: n
+contact: y
+NCBI_generated_data: y
+ARCHS4: y
+
+>Sample columns:
+
+Sample_series_id: y
+library name: y
+title: y
+source name: y
+organism: y
+molecule: y
+description: y
+processed data file : y
+raw file: y
+single or paired-end: n
+instrument model: n
+Sample characteristics: y

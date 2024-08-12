@@ -1,0 +1,2 @@
+study_accession	Virus	study_title	organism_taxid	organism_name	bioproject
+SRP057947	CMV	Native elongating transcript sequencing (NET-seq), nascnet RNA-seq, and total RNA-seq of wild type and RNA polymerase II C-terminal domain mutants and ChIP-nexus of RNA polymerase II C-terminal domains phosphoisoforms and splicing factors in S. cerevisiae	1247190	Saccharomyces cerevisiae BY4741	PRJNA282886

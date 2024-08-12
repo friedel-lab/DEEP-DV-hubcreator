@@ -1,0 +1,10 @@
+# This file contains the columns of the SRA metadata that will be used to (post-) filter the SRA metadata by using the viruses and their synonyms.
+
+study_title: y
+experiment_title: y
+experiment_desc: y
+library_strategy: y
+library_layout: y
+instrument_model_desc: y
+organism_name: y
+SRA_characteristics: y

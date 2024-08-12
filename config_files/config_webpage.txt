@@ -1,0 +1,18 @@
+# This is the config file, where you can choose which parts of the webpage will be shown.
+# The public_data_pages are the webpages containing GEO and SRA metadata
+# Write y behind the colon to include the corresponding webpage or n to exclude it
+# When all webpages are selected (with y behind the colon), a button will appear on the webpages after the build, which links the other webpages
+
+internal_data_page: y
+public_data_pages: y
+
+# Assign number of displayed series/studies. If all series/studies should be displayed, set the number to NA
+
+number_visible_entries_geo: 20
+number_visible_entries_sra: 20
+number_visible_entries_internal: NA
+
+# Assign number of displayed series/runs. If all series/runs should be displayed, set the number to NA
+
+number_visible_geo_samples: 10
+number_visible_sra_runs: 10

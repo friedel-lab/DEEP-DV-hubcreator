@@ -1,0 +1,22 @@
+Accession	Title	File	Status	MD_Version	Contact
+GSE185234	The HSV-1 ICP22 protein selectively impairs histone repositioning upon Pol II transcription downstream of genes (ATAC-seq I)	GEOSubmissionMutantsAll_finished.xlsx	Public	1.0	Lars Dölken/Caroline Friedel
+GSE185235	The HSV-1 ICP22 protein selectively impairs histone repositioning upon Pol II transcription downstream of genes (ATAC-seq II)	GEOSubmissiondICP22_finished.xlsx	Public	1.0	Lars Dölken/Caroline Friedel
+GSE185236	The HSV-1 ICP22 protein selectively impairs histone repositioning upon Pol II transcription downstream of genes (Omni-ATAC-seq II)	GEOSubmissionKD_FACT_finished.xlsx	Public	1.0	Lars Dölken/Caroline Friedel
+GSE185238	The HSV-1 ICP22 protein selectively impairs histone repositioning upon Pol II transcription downstream of genes (Omni-ATAC-seq I)	GEOSubmissionHA_ICP22_KOS_finished.xlsx	Public	Lars Dölken/Caroline Friedel	Lars Dölken/Caroline Friedel
+GSE185240	The HSV-1 ICP22 protein selectively impairs histone repositioning upon Pol II transcription downstream of genes (Omni-ATAC-seq III)	GEOSubmissionWTBAC_finished.xlsx	Public	1.0	Lars Dölken/Caroline Friedel
+GSE185246	The HSV-1 ICP22 protein selectively impairs histone repositioning upon Pol II transcription downstream of genes (ChIPmentation)	ChIPmentation_210810_finished.xlsx	Public	1.0	Lars Dölken/Caroline Friedel
+GSE208077	The HSV-1 ICP22 protein selectively impairs histone repositioning upon Pol II transcription downstream of genes (OMNI-ATAC-seq IV)	GEOSubmissionATACseqControls_final.xlsx	Public	2.0	Lars Dölken/Caroline Friedel
+GSE208078	The HSV-1 ICP22 protein selectively impairs histone repositioning upon Pol II transcription downstream of genes (RNA-seq II)	GEOSubmissionRNAseqControls_final.xlsx	Public	2.0	Lars Dölken/Caroline Friedel
+GSE185239	The HSV-1 ICP22 protein selectively impairs histone repositioning upon Pol II transcription downstream of genes (RNA-seq)	GEOSubmissionRNAseq_finished.xlsx	Public	1.0	Lars Dölken/Caroline Friedel
+GSE129582	Subcellular RNA fractions of HSV-1 infected primary human fibroblasts including infection with delta-Vhs mutant	GEO_Friedel_HSV1_dVhs.xlsx	Public	1.0	Lars Dölken/Caroline Friedel
+GSE129715	Total and newly transcribed (4sU-RNA) RNA of primary human fibroblasts infected with the vhs-null mutant of HSV-1	GEO_4sUSeq_dVhs.xls	Public	1.0	Lars Dölken/Caroline Friedel
+GSE132920	H3K4me3 ChIPmentation on HSV-1 infected primary human fibroblasts	GEO_metadata_H3K4me3_final.xls	Public	1.0	Lars Dölken/Caroline Friedel
+GSE140068	Chromatin-associated RNA of HSV-1 infected primary human fibroblasts including infection with vhs mutants	GEO_Friedel_HSV1_dVhs2.xlsx	Public	1.0	Lars Dölken/Caroline Friedel
+GSE151912	Wide-spread disruption of transcription termination in HSV-1 infection:  Next generation sequencing of total and newly transcribed (4sU-RNA) RNA from different virus strains and mutant viruses	GEO_HSV_KO_Friedel.xls	Public	1.0	Lars Dölken/Caroline Friedel
+GSE128880	Subcellular RNA fractions of primary human fibroblasts infected with the HSV-1 delta-ICP27 mutant	GEO_Friedel_HSV1_ICP27.xlsx	Public	1.0	Lars Dölken/Caroline Friedel
+GSE100469	4sU-seq of HFF exposed to salt and heat stress	GEO_4sU_stress.xls	Public	1.0	Lars Dölken/Caroline Friedel
+GSE100576	Subcellular RNA fractions of HSV-1 infected primary human fibroblasts	GEO_subcellular.xls	Public	1.0	Lars Dölken/Caroline Friedel
+GSE100611	ATAC-seq on HSV-1 infected primary human fibroblasts (time course)	GEO_ATAC.xls	Public	1.0	Lars Dölken/Caroline Friedel
+GSE101731	ATAC-seq of HFF exposed to salt and heat stress	GEO_ATACseq_stress.xls	Public	1.0	Lars Dölken/Caroline Friedel
+GSE59717	Wide-spread disruption of transcription termination in HSV-1 infection:  Next generation sequencing of total and newly transcribed (4sU-RNA) RNA	GEO_HSV_total_4sU.xls	Public	1.0	Lars Dölken/Caroline Friedel
+GSE60040	Wide-spread disruption of transcription termination in HSV-1 infection: Next-generation sequencing of translational activityd by ribosome profiling	GEO_HSV_RibosomeProfiling.xls	Public	1.0	Lars Dölken/Caroline Friedel

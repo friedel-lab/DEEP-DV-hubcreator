@@ -1,0 +1,10 @@
+# This file contains the series columns which can be selected for the identification about which virus the correspondig excel file contains data (for internal webpage).
+
+# Relevance columns:
+
+title: y
+summary: y
+overall design: y
+experimental design: y
+
+# End of file

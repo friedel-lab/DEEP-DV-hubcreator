@@ -1,0 +1,11 @@
+name: hubcreator
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - python=3.8
+  - geofetch
+  - openpyxl
+  - pysradb
+  - tqdm

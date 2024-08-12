@@ -1,0 +1,68 @@
+# Please choose if the columns down below should get integrated on the public geo meta data website.
+# "y" stands for "yes" and means the column will be integrated.
+# "n" stands for "no" and means the column won't be integrated.
+
+>Series columns:
+
+Series_geo_accession: y
+Virus: y
+Series_title: y
+Series_status: n
+Series_submission_date: n
+Series_last_update_date: y
+Series_pubmed_id: n
+Series_summary: y
+Series_overall_design: y
+Series_type: y
+Series_contributor: y
+Series_sample_id: n
+Series_contact_name: n
+Series_contact_email: y
+Series_contact_institute: y
+Series_contact_address: n
+Series_contact_city: n
+Series_contact_zip/postal_code: n
+Series_contact_country: n
+Series_supplementary_file: n
+Series_platform_id: n
+Series_platform_taxid: n
+Series_relation: y
+NCBI_generated_data: y
+ARCHS4: y
+SRP: y
+
+>Sample columns:
+
+Sample_geo_accession: y
+Sample_series_id: y
+Sample_title: y
+Sample_status: y
+Sample_submission_date: y
+Sample_last_update_date: y
+Sample_type: y
+Sample_description: y
+Sample_characteristics_ch1: y
+Sample_channel_count: n
+Sample_source_name_ch1: n
+Sample_organism_ch1: y
+Sample_taxid_ch1: n
+Sample_molecule_ch1: y
+Sample_extract_protocol_ch1: n
+Sample_data_processing: n
+Sample_platform_id: n
+Sample_contact_name: y
+Sample_contact_email: y
+Sample_contact_institute: n
+Sample_contact_address: n
+Sample_contact_city: n
+Sample_contact_zip/postal_code: n
+Sample_contact_country: n
+Sample_instrument_model: n
+Sample_library_selection: n
+Sample_library_source: n
+Sample_library_strategy: n
+Sample_relation: y
+Sample_supplementary_file_1: n
+Sample_data_row_count: n
+
+# End of file

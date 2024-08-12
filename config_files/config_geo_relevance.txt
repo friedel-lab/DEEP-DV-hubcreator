@@ -1,0 +1,11 @@
+# This file contains the series columns, which will be checked for each gse and examine if the gse is relevant (for public geo data webpage).
+# Please note that only columns can be chosen for the relevance check that are also contained on the website/noted with "y" in config_columns.txt
+
+# Relevance columns:
+
+Series_title: y
+Series_summary: y
+Series_overall_design: y
+Series_type: n
+
+# End of file
