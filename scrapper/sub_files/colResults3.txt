@@ -1,0 +1,663 @@
+run_accession: 500
+study_accession: 500
+study_title: 500
+experiment_accession: 500
+experiment_title: 500
+experiment_desc: 500
+organism_taxid: 500
+organism_name: 500
+library_name: 500
+sample_accession: 500
+sample_title: 500
+biosample: 500
+bioproject: 500
+instrument: 500
+instrument_model_desc: 500
+total_spots: 500
+total_size: 500
+run_total_spots: 500
+run_total_bases: 500
+run_alias: 500
+experiment_alias: 500
+ena_fastq_http: 500
+ena_fastq_http_1: 500
+ena_fastq_http_2: 500
+ena_fastq_ftp: 500
+ena_fastq_ftp_1: 500
+ena_fastq_ftp_2: 500
+library_strategy: 499
+library_source: 499
+library_selection: 499
+library_layout: 499
+instrument_model: 499
+public_filename: 498
+public_url: 498
+public_size: 498
+public_date: 498
+public_md5: 498
+public_version: 498
+public_semantic_name: 498
+public_supertype: 498
+public_sratoolkit: 498
+aws_url: 498
+aws_free_egress: 498
+aws_access_type: 498
+ncbi_url: 498
+ncbi_free_egress: 498
+ncbi_access_type: 498
+gcp_url: 498
+gcp_free_egress: 498
+gcp_access_type: 498
+strain: 335
+gssr_id: 292
+lsid: 292
+material_type: 292
+project: 292
+sample_id: 292
+research_project: 291
+work_request: 291
+product_order: 290
+product_part_number: 290
+root_sample_id: 290
+collection date: 288
+analysis_type: 270
+library_type: 270
+specific host: 257
+isolation-source: 257
+geographic location (country and/or sea, region): 216
+source_name: 123
+biosamplemodel: 101
+cell type: 80
+tissue: 66
+lat_lon: 61
+geo_loc_name: 60
+collection_date: 58
+treatment: 55
+isolate: 54
+cell line: 52
+host: 51
+geographic location (country and/or sea,region): 48
+host-disease: 40
+collected-by: 40
+genotype: 39
+sex: 36
+age: 35
+sample name: 33
+isolation source: 31
+isolation_source: 29
+biomaterial_provider: 28
+insdc center name: 25
+insdc first public: 25
+insdc last update: 25
+insdc status: 25
+external id: 24
+insdc center alias: 24
+submitter id: 24
+geographic location: 21
+common name: 20
+ena first public: 19
+ena last update: 19
+disease: 19
+infection: 16
+collected_by: 15
+cell_line: 14
+replicate: 13
+host_disease: 12
+geographic location (country and/or sea): 11
+broker name: 10
+cell_type: 10
+chip antibody: 10
+sample_type: 10
+time point: 9
+host scientific name: 8
+host common name: 7
+host subject id: 7
+dev_stage: 7
+host health state: 6
+collecting institution: 6
+host sex: 6
+isol_growth_condt: 6
+organism part: 6
+ebi_url: 6
+ebi_free_egress: 6
+ebi_access_type: 6
+note: 6
+time: 6
+geographic location (latitude): 5
+geographic location (longitude): 5
+cultivar: 5
+env_broad_scale: 5
+env_local_scale: 5
+env_medium: 5
+developmental stage: 5
+biomaterial provider: 5
+ena-first-public: 5
+ena-last-update: 5
+lab_host: 5
+geographic location (region and locality): 5
+collector name: 4
+host age: 4
+receipt date: 4
+virus identifier: 4
+experimental factor immunoprecipitate: 4
+race: 4
+barcode: 4
+health_state: 4
+timepoint: 4
+disease_stage: 4
+ethnicity: 4
+transfection: 4
+propagation: 4
+antibody: 4
+cell organism: 4
+cell description: 4
+cell karyotype: 4
+cell lineage: 4
+cell sex: 4
+experimental factor genotype: 4
+ecotype: 3
+infection status: 3
+scientific_name: 3
+individual: 3
+genotype/variation: 3
+clone: 3
+population: 3
+virus strain: 3
+sub_species: 3
+project name: 3
+transfected with: 3
+time post infection: 3
+sample_name: 3
+lab: 3
+lab description: 3
+datatype: 3
+datatype description: 3
+cell: 3
+labexpid: 3
+project_name: 3
+agent: 3
+host_sex: 3
+host_subject_id: 3
+host_age: 3
+sample capture status: 2
+type-material: 2
+experimental factor compound: 2
+experimental factor dose: 2
+experimental factor infect: 2
+experimental factor time: 2
+harvesting timepoint: 2
+passages: 2
+karyotype: 2
+condition: 2
+hour post-infection: 2
+viral infection: 2
+sub_strain: 2
+ontological term: 2
+ifsac+ category: 2
+attribute_package: 2
+source type: 2
+isolate_name_alias: 2
+sequenced by: 2
+title: 2
+collected by: 2
+isolation source host associated: 2
+isolation source non-host-associated: 2
+chip antibody vendor: 2
+passage: 2
+infected with: 2
+breed: 2
+env_material: 2
+virus type: 2
+treatment description: 2
+samp_collect_device: 2
+replication: 2
+serovar: 2
+host_tissue_sampled: 2
+gap_accession: 2
+submitter handle: 2
+biospecimen repository: 2
+study name: 2
+study design: 2
+biospecimen repository sample id: 2
+submitted sample id: 2
+submitted subject id: 2
+gap_sample_id: 2
+gap_subject_id: 2
+histological type: 2
+analyte type: 2
+subject is affected: 2
+gap_consent_code: 2
+gap_consent_short_name: 2
+study disease: 2
+arrayexpress-species: 2
+subject id: 2
+induce: 2
+primary_disease: 2
+sample type: 2
+gender: 2
+sample id: 2
+influenza test method: 1
+influenza test result: 1
+other pathogens tested: 1
+host behaviour: 1
+host disease outcome: 1
+host habitat: 1
+disease state: 1
+other known features: 1
+conditions: 1
+immunophenotype: 1
+infect: 1
+environmental_sample: 1
+grna sequence forward: 1
+grna sequence reverse: 1
+grna name: 1
+4su treatment: 1
+cmv infection: 1
+mcpyv status: 1
+pathogen: 1
+1h pretreatment: 1
+1 day treatment: 1
+reprogramming method: 1
+phenotype: 1
+pair: 1
+morphology: 1
+s phase: 1
+perturb-seq adenovirus: 1
+donor condition: 1
+patient identity: 1
+xrt stage: 1
+library_strategy_x: 1
+library_source_x: 1
+library_selection_x: 1
+library_layout_x: 1
+instrument_model_x: 1
+library_id: 1
+library_strategy_y: 1
+library_source_y: 1
+library_selection_y: 1
+library_layout_y: 1
+platform: 1
+instrument_model_y: 1
+design_description: 1
+filetype: 1
+filename: 1
+filename2: 1
+cell subset: 1
+ly49h status: 1
+mcv status: 1
+cdna library: 1
+cell line source gender: 1
+input sample used: 1
+method: 1
+env_biome: 1
+env_feature: 1
+sort: 1
+tissue source: 1
+background strain: 1
+cell type source: 1
+cell source: 1
+latent infection: 1
+cell_subtype: 1
+rna type: 1
+adapter: 1
+probe: 1
+experimental factor u to c mutation in conserved cis-element aauaaa: 1
+experimental factor adenovirus l3 pre-mrna: 1
+polya site rna substrate: 1
+experimental factor wild type genothpe: 1
+experimental factor sv40 late pre-mrna: 1
+experimental factor wild type genotype: 1
+sample comment: 1
+labversion: 1
+number of sonications: 1
+investigation_type: 1
+virus_state: 1
+ip_condition: 1
+sirna: 1
+disease/cell type: 1
+target_site: 1
+cell fraction: 1
+plasmid: 1
+estimated_size: 1
+host_spec_range: 1
+pathogenicity: 1
+samp_mat_process: 1
+sample_size: 1
+contributing_institute: 1
+illness symptoms: 1
+localization: 1
+readtype: 1
+insertlength: 1
+data_type: 1
+host_description: 1
+culture_collection: 1
+subtype: 1
+host_disease_stage: 1
+specimen_voucher: 1
+pathotype: 1
+serotype: 1
+subgroup: 1
+host_disease_outcome: 1
+passage_history: 1
+host_health_state: 1
+source_material_id: 1
+specific_host: 1
+culture: 1
+restrictionenzyme: 1
+publicaccession: 1
+projectaccession: 1
+species: 1
+genus: 1
+gold_id: 1
+454_regions: 1
+pubmed_id: 1
+seq_center: 1
+lib_type: 1
+sequences_sequences_predicted_genes: 1
+sequences_sequences_assembled: 1
+investigation type: 1
+metagenome_id: 1
+sequencing method: 1
+ebi_id: 1
+metagenome_name: 1
+borker_object_id: 1
+broker_object_id: 1
+collection_timezone: 1
+diss_org_carb: 1
+environment (biome): 1
+environment (feature): 1
+environment (material): 1
+environmental package: 1
+geodetic_system: 1
+geographic location (depth): 1
+metagenome_taxonomy: 1
+samp mat process: 1
+samp_size: 1
+suspend_part_matter: 1
+water environmental package: 1
+virus infection: 1
+label: 1
+id</u><u>: 1
+collection method: 1
+obtainedby: 1
+obtainedby description: 1
+donor_id: 1
+biomaterial_type: 1
+line: 1
+infection duration: 1
+ltf depletion: 1
+fraction: 1
+injected virus: 1
+injection site: 1
+sequeneced tissue name: 1
+body site: 1
+arrayexpress-strain_or_line: 1
+sample description: 1
+host cell type: 1
+ebv type: 1
+ebv strain: 1
+donor/recipient hcmv serostatus: 1
+hcmv reactivation: 1
+days post-h-hsct: 1
+4c method: 1
+hbv infection: 1
+dox: 1
+infection with: 1
+mutant: 1
+uv: 1
+itme: 1
+mutan: 1
+mcpyv: 1
+dox treatment: 1
+labeling treatment: 1
+sample identifier: 1
+experimental factor stimulus: 1
+stimulus: 1
+paired_id: 1
+seq_run: 1
+host_body_mass_index: 1
+host_diet: 1
+host_staple_food: 1
+glycemic_status: 1
+host_height: 1
+host_weight: 1
+host_waist_circumference: 1
+host_hip_circumference: 1
+host_waist_hip_circumference: 1
+duodenum_oxygen_saturation: 1
+serum_zonulin: 1
+hemoglobin: 1
+hct: 1
+rdc: 1
+mcv: 1
+mch: 1
+mchc: 1
+rdw: 1
+plt: 1
+tlc: 1
+neutrophils: 1
+lymphocytes: 1
+monocytes: 1
+eosinophils: 1
+basophils: 1
+fasting_plasma_glucose: 1
+postprandial_plasma_glucose: 1
+hba1c: 1
+duodenal bacterial count: 1
+interferon gamma: 1
+interleukin 10: 1
+interleukin 1beta: 1
+interleukin 4: 1
+interleukin 5: 1
+interleukin 8: 1
+tnf alpha: 1
+pgp_id: 1
+center_name: 1
+center_project_name: 1
+i5_index_id: 1
+i7_index_id: 1
+index: 1
+index2: 1
+lane: 1
+run_center: 1
+run_date: 1
+run_prefix: 1
+runid: 1
+sample_plate: 1
+sample_project: 1
+sample_well: 1
+sequencing_meth: 1
+well_description: 1
+age_at__diagnosis: 1
+aliquoted_for_genomics: 1
+aza: 1
+blood: 1
+cdai: 1
+cdai_pro2: 1
+clinic_visit_date: 1
+collection_timestamp: 1
+diagnosis: 1
+diagnosis date: 1
+dna_extracted: 1
+elevation: 1
+empo_1: 1
+empo_2: 1
+empo_3: 1
+env biome: 1
+env feature: 1
+env package: 1
+extent_of_affected_surface_ileum: 1
+extent_of_affected_surface_left_colon: 1
+extent_of_affected_surface_rectum: 1
+extent_of_affected_surface_right_colon: 1
+extent_of_affected_surface_sub_score: 1
+extent_of_affected_surface_transverse_colon: 1
+extent_of_ulcerated_surface_ileum: 1
+extent_of_ulcerated_surface_left_colon: 1
+extent_of_ulcerated_surface_rectum: 1
+extent_of_ulcerated_surface_right_colon: 1
+extent_of_ulcerated_surface_sub_total: 1
+extent_of_ulcerated_surface_transverse_colon: 1
+extra_intestinal_manifest_ation: 1
+final_metabolomics_weight: 1
+first_patient_metadata_line: 1
+found_in_proteome_aliquot_list: 1
+genomic_sample_underwent_24h_thaw: 1
+geo loc name: 1
+hospitalizations: 1
+hospitalizations_in_past_6_months: 1
+host body habitat: 1
+host body mass index: 1
+host body product: 1
+host body site: 1
+host height: 1
+host life stage: 1
+host taxid: 1
+host weight: 1
+host_age_units: 1
+host_height_units: 1
+host_weight_units: 1
+ibd_history: 1
+ileum_examined_accessed_resected_or_inaccessible: 1
+latitude: 1
+left_colon_examined_accessed_resected_or_inaccessible: 1
+longitude: 1
+metabolomic_sample_underwent_24h_thaw: 1
+most_recent_metadata_line_match: 1
+mp: 1
+not_inflamed_tissue: 1
+original_metabolomics_weight: 1
+patient id: 1
+patient number: 1
+physical_specimen_location: 1
+physical_specimen_remaining: 1
+pouch: 1
+pregnant: 1
+presence_and_size_of_ulcers_ses_cd_ileum: 1
+presence_and_size_of_ulcers_ses_cd_left_colon: 1
+presence_and_size_of_ulcers_ses_cd_rectum: 1
+presence_and_size_of_ulcers_ses_cd_right_colon: 1
+presence_and_size_of_ulcers_ses_cd_sub_total: 1
+presence_and_size_of_ulcers_sescd_transverse: 1
+presence_and_type_of_narrowings_ileum: 1
+presence_and_type_of_narrowings_left_colon: 1
+presence_and_type_of_narrowings_rectum: 1
+presence_and_type_of_narrowings_right_colon: 1
+presence_and_type_of_narrowings_sub_score: 1
+presence_and_type_of_narrowings_transverse: 1
+prior_surgery: 1
+procedure_date: 1
+proteome_id: 1
+raw_metadata_line: 1
+realiquoted_for_metabolomics_or_genomics: 1
+reason_for_visit: 1
+rectum_examined_accessed_resected_or_inaccessible: 1
+right_colon_examined_accessed_resected_or_inaccessible: 1
+ses_cd_total_score: 1
+smoking: 1
+steroids: 1
+stools_before_dx: 1
+subjectid: 1
+transferred_into_glycerol: 1
+transverse_examined_accessed_resected_or_inaccessible: 1
+tube_id: 1
+visit number: 1
+yob: 1
+alb_g_per_dl: 1
+antibiotics: 1
+asa: 1
+biologic_therapy: 1
+crp_mg_dl: 1
+historical_disease_extent: 1
+inflamed_tissue: 1
+lab_info_date: 1
+lymph_prcntg: 1
+mayo_endo: 1
+mcv_um3: 1
+other_nonbiologic_therapy: 1
+partial_mayo: 1
+partial_mayo_score: 1
+pga: 1
+plt_1000_mm3: 1
+pms1_stool_freq: 1
+pms2_rectal_bleeding: 1
+pms3_pga: 1
+rectal_bleeding: 1
+stool_freq: 1
+uceis: 1
+wbc_1000_mm3: 1
+new_genomics_aliquot: 1
+new_metabolomics_weight: 1
+behavior: 1
+location: 1
+mtx: 1
+rutgeerts: 1
+pouchitis: 1
+extraction_robot: 1
+extractionkit_lot: 1
+linker: 1
+mastermix_lot: 1
+orig_name: 1
+pcr_primers: 1
+plating: 1
+primer: 1
+primer_date: 1
+primer_plate: 1
+processing_robot: 1
+target_gene: 1
+target_subfragment: 1
+tm1000_8_tool: 1
+tm300_8_tool: 1
+tm50_8_tool: 1
+water_lot: 1
+well_id: 1
+type of reads: 1
+protocol: 1
+medium: 1
+drug treatment: 1
+pool number: 1
+locus: 1
+bormann macroscopic classification: 1
+depth of tumor invasion: 1
+histology: 1
+grade: 1
+ln status: 1
+host ethnicity: 1
+ebv: 1
+chemotherapy before surgical resection: 1
+comments: 1
+strain/genotype: 1
+ad5-cre innoculum: 1
+feature barcode: 1
+batch: 1
+cmv serology status: 1
+is tumor: 1
+aggregation_project: 1
+library: 1
+target_set: 1
+work_request_or_pdo: 1
+protein: 1
+sort gate: 1
+transduction: 1
+resistance ebv: 1
+stage: 1
+alias: 1
+description: 1
+sra accession: 1
+tissue_type: 1
+experimental factor cell type: 1
+experimental factor disease: 1
+experimental factor organism: 1
+culture-collection: 1
+id: 1
+antibody manufacturer: 1
+antibody catalog number: 1
+time post induction: 1
+treated with: 1
+oxygen concentration: 1
+transfected/infected with: 1
+xenograft tumor: 1
+mouse strain for xenograft growth: 1
+library id: 1
+cell line background: 1
+sorting: 1

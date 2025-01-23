@@ -8,10 +8,9 @@ from tqdm import tqdm
 current_folder = os.path.dirname(os.path.abspath(__file__))
 python_classes_path = os.path.join(current_folder, "..", "python_classes")
 
-
 config_file_path = os.path.join(current_folder, "..", "config_files")
 data_files_path = os.path.join(current_folder, "..", "result_files")
-
+# Merken: PRJNA720820 bzw. SRP314176 (Hatte in geoSeries eine SRP -> Sollte nach Neuaufsetzung der sraDaten NICHT mehr in den sraDaten vorhanden sein)
 parser = argparse.ArgumentParser(description="updateSRA.py extracts metadata from SRA by using the package 'pysradb'. It gets included/replaced in the existing dataframe.")
 parser.add_argument("-config", help="Path to the directory containing the config files.", default=f"{config_file_path}")
 parser.add_argument("-output_dir", help="Path to the directory were the result files should be saved.", default=data_files_path)
@@ -38,6 +37,9 @@ current_month = bupt.get_month()
 current_day = bupt.get_day()
 current_date = bupt.get_today()
 publication_date = ""
+
+complete_sra_study_data = pandas.read_csv(f"{args.input_dir}/sraStudyData.txt", sep="\t", low_memory=False)
+complete_sra_run_data = pandas.read_csv(f"{args.input_dir}/sraRunData.txt", sep="\t", low_memory=False)
 
 # Extracting last update of geo meta data
 auto_start_date = ""
@@ -92,40 +94,69 @@ sra_search = SraSearch(
 sra_search.search()
 
 pre_sra_data = sra_search.df
+#print(pre_sra_data.columns)
 
 # We only want SRA exmperiments that were not already mentioned in the extracted GEO metadata
-# We will therefore extract all SRP IDs that are part of the extracted GEO metadata and drop all rows of sra_data that contain those SRP IDs
+# We will therefore extract all SRP and BioProject IDs that are part of the extracted GEO metadata and drop all rows of sra_data that contain those IDs
 
 public_geo_data = pandas.read_csv(f"{args.input_dir}/geoSeries.txt")
 
-srp_ids_geo = public_geo_data["SRP"]
+srp_ids_geo = list(public_geo_data["SRP"])
+bioproject_ids_geo = list(public_geo_data["BioProject"])
+#temp_sra_data = pre_sra_data[~(pre_sra_data['study_accession'].isin(srp_ids_geo) | pre_sra_data['bioproject'].isin(bioproject_ids_geo))]
+
+srps = []
+
+# Previously failed SRPs saved in a log file
+srps_from_log = []
+
+# Get failed SRPs and add to SRPs
+with open(f"{args.output_dir}/failed_srps.log", "r") as file:
+    for line in file:
+        line = line.strip()
+        if line != "":
+            srps_from_log.append(line)
+file.close()
 
 # ~ is the negation ...
 try:
     temp_sra_data = pre_sra_data[~pre_sra_data['study_accession'].isin(srp_ids_geo)]
+    srps = list(set(temp_sra_data["study_accession"]))
 except:
-    print("\n\nNo new study has been found! Please increase the time range.\n\n")
-    with open(f"{args.input_dir}/last.update_sra.txt", "r") as file:
-        content = file.readlines()
-    with open(f"{args.input_dir}/last.update_sra.txt", "w") as file:          
-        file.write(str(bupt.get_time()).strip() + "\n")
-        for old_line in content:
-            file.write(old_line)
-    sys.exit()
+    if len(srps_from_log) == 0:
+        print("\n\nNo new study has been found! Please increase the time range.\n\n")
+        with open(f"{args.input_dir}/last.update_sra.txt", "r") as file:
+            content = file.readlines()
+        with open(f"{args.input_dir}/last.update_sra.txt", "w") as file:          
+            file.write(str(bupt.get_time()).strip() + "\n")
+            for old_line in content:
+                file.write(old_line)
+        
+        # Declare temporary sra study dataframe to iterate over it
+        tmp_sra_study_data = complete_sra_study_data.copy()
+        
+        # Iterate over SRA studies/SRPs to filter out those that are already present in the extracted GEO data (this occurs if SRA data is extracted prior to GEO data)
+        for index, row in tmp_sra_study_data.iterrows():
+            # Get SRP and BioProject ID of the current SRA study
+            srp_id = row["study_accession"]
+            bio_id = row["bioproject"]
+            
+            # Remove the SRA study and their corresponding runs if the SRP or BioProject is already present in GEO data
+            if srp_id in srp_ids_geo or bio_id in bioproject_ids_geo:
+                complete_sra_study_data = complete_sra_study_data[complete_sra_study_data["study_accession"] != srp_id]
+                complete_sra_run_data = complete_sra_run_data[complete_sra_run_data["study_accession"] != srp_id]
+        
+        # Safe updated data
+        complete_sra_study_data.to_csv(f"{args.output_dir}/sraStudyData.txt", index = False, na_rep = "NA", sep="\t")
+        complete_sra_run_data.to_csv(f"{args.output_dir}/sraRunData.txt", index = False, na_rep = "NA", sep="\t")
+        
+        sys.exit()
 
-#srps = list(set(temp_sra_data["study_accession"]))
-#print(len(srps))
-###### Only once ######
-#already_sra_data = pandas.read_csv(f"search_results.txt", sep="\t")
-#temp_sra_data = already_sra_data[~already_sra_data['study_accession'].isin(srp_ids_geo)]
-#srps = list(set(temp_sra_data["study_accession"]))
-#print(len(srps))
-###### Only once ######
-
-srps = list(set(temp_sra_data["study_accession"]))
+if len(srps_from_log) > 0:
+    for sfl in srps_from_log:
+        srps.append(sfl)
 
 web = SRAweb()
-
 
 sra_col_sel = select_sra_columns(f"{args.config}/config_sra_cols.txt")
 
@@ -144,8 +175,13 @@ progress_bar = tqdm(total=len(srps), desc="Processing", unit="iteration")
 for srp in srps:
 	try:
 		progress_bar.update(1)
-		df = web.sra_metadata(srp, detailed = True)  
-	
+		df = web.sra_metadata(srp, detailed = True)
+
+		if "bioproject" in df.columns:
+			bioproject_id = df["bioproject"][0]
+			if pandas.notna(bioproject_id) and bioproject_id in bioproject_ids_geo:
+				continue
+		
 		run_container_list = []
 
 		for index, row in df.iterrows():
@@ -222,8 +258,8 @@ for srp in srps:
 
 progress_bar.close()
   
-complete_sra_study_data = pandas.read_csv(f"{args.input_dir}/sraStudyData.txt", sep="\t", low_memory=False)
-complete_sra_run_data = pandas.read_csv(f"{args.input_dir}/sraRunData.txt", sep="\t", low_memory=False)
+#complete_sra_study_data = pandas.read_csv(f"{args.input_dir}/sraStudyData.txt", sep="\t", low_memory=False)
+#complete_sra_run_data = pandas.read_csv(f"{args.input_dir}/sraRunData.txt", sep="\t", low_memory=False)
 
 accession_numbers = sra_study_data["study_accession"]
 
@@ -256,6 +292,23 @@ else:
             
     complete_sra_study_data = complete_sra_study_data.sort_values(by="study_accession", ascending=False)
 
+    # Declare temporary sra study dataframe to iterate over it
+    tmp_sra_study_data = complete_sra_study_data.copy()
+    
+	# Iterate over SRA studies/SRPs to filter out those that are already present in the extracted GEO data (this occurs if SRA data is extracted prior to GEO data)
+    for index, row in tmp_sra_study_data.iterrows():
+        # Get SRP and BioProject ID of the current SRA study
+        srp_id = row["study_accession"]
+        bio_id = row["bioproject"]
+        
+        # Remove the SRA study and their corresponding runs if the SRP or BioProject is already present in GEO data
+        if srp_id in srp_ids_geo:
+            complete_sra_study_data = complete_sra_study_data[complete_sra_study_data["study_accession"] != srp_id]
+            complete_sra_run_data = complete_sra_run_data[complete_sra_run_data["study_accession"] != srp_id]
+        elif pandas.notna(bio_id) and bio_id in bioproject_ids_geo:
+            complete_sra_study_data = complete_sra_study_data[complete_sra_study_data["study_accession"] != srp_id]
+            complete_sra_run_data = complete_sra_run_data[complete_sra_run_data["study_accession"] != srp_id]
+     
     # Safe updated data
     complete_sra_study_data.to_csv(f"{args.output_dir}/sraStudyData.txt", index = False, na_rep = "NA", sep="\t")
     complete_sra_run_data.to_csv(f"{args.output_dir}/sraRunData.txt", index = False, na_rep = "NA", sep="\t")
@@ -265,6 +318,10 @@ if len(failed_srps) == 0:
     print("All updates were successful.")
 else:
     print(f"Updates of these SRPs have failed: {failed_srps}")
+    with open(f"{args.output_dir}/failed_srps.log", "w") as file:
+        for failed_srp in failed_srps:
+            file.write(f"{failed_srp}\n")
+    file.close()
     
 with open(f"{args.input_dir}/last.update_sra.txt", "r") as file:
 	content = file.readlines()

@@ -20,7 +20,9 @@ args = parser.parse_args()
 
 sys.path.append(args.classes)
 
-from geoScrapper_classes import virus_reader, select_sra_columns, compute_percentage, sra_container_extraction
+from geoScrapper_classes import virus_reader, select_sra_columns, compute_percentage, sra_container_extraction, backUp_file_timer
+
+bupt = backUp_file_timer()
 
 vrd = virus_reader(f"{args.config}/config_virus.txt")
 virus_list = vrd.get_virus_list()
@@ -29,42 +31,83 @@ virus_list = vrd.get_virus_list()
 filter_query = vrd.get_filter()[:-4]
 
 # Just for testing
+#current_date = datetime.now()
+#formatted_date = current_date.strftime("%d-%m-%Y")
+#publication_date = f"01-01-2024:{formatted_date}"
+
+# Scrapping SRPs of all SRA studies once may result in time outs --> Extract SRPs in "year-batches" and combine them afterwards
+# Start from 2008 (SRA website was published in 2007, but results for our query start a year later in 2008)
+start_year = 2008
+# Create a first batch to extract all SRPs for sure
+first_batch = f"01-01-1900:31-12-{start_year-1}"
+
+# Every batch covers one year, so the batch size is 1
+batch_size = 1
+
+# Get current data to determine the number of batches and to begin the procedure
 current_date = datetime.now()
 formatted_date = current_date.strftime("%d-%m-%Y")
-publication_date = f"01-01-2024:{formatted_date}"
+currrent_year = int(formatted_date.split('-')[-1])
+batch_number = currrent_year-start_year+1
 
+print(f"{batch_number+1} batches are going to be extracted.\n Starter batch is now extracted:")
+
+# Save all extracted dfs of  and combine in this one
+pre_sra_data = pandas.DataFrame()
+# Warning message from package pysradb is pretty long and ugly for starter batch (when no studies are found in the batch) --> Don't show it
+sys.stdout = open(os.devnull, 'w')
+# Extract first batch
 sra_search = SraSearch(
        verbosity=2,
        return_max=1000000,
+       publication_date = first_batch,
        query=filter_query
 )
 
 # Search for matching SRA expriments
 sra_search.search()
+sys.stdout = sys.__stdout__
 
-pre_sra_data = sra_search.df
+first_batch_df = sra_search.df
+
+if not first_batch_df.empty:
+	pre_sra_data = pandas.concat([pre_sra_data, first_batch_df], ignore_index=True)
+else:
+    print("No studies were found for starter batch. Continuing with next batches.")
+
+# Now, iterate over each batch/year and extract SRPs that are contained in a row of the resulting data frame
+for b in range(0, batch_number):
+    
+	year_in_loop = start_year+b
+	print(f"Batch of year {year_in_loop} is now extracted:")
+
+	sra_search = SraSearch(
+		verbosity=2,
+		return_max=1000000,
+  		publication_date = f"01-01-{year_in_loop}:31-12-{year_in_loop}",
+		query=filter_query
+	)
+
+	# Search for matching SRA expriments
+	sra_search.search()
+	
+	batch_df = sra_search.df
+
+	if not batch_df.empty:
+		pre_sra_data = pandas.concat([pre_sra_data, batch_df], ignore_index=True)
 
 # We only want SRA exmperiments that were not already mentioned in the extracted GEO metadata
-# We will therefore extract all SRP IDs that are part of the extracted GEO metadata and drop all rows of sra_data that contain those SRP IDs
+# We will therefore extract all SRP and BioProject IDs that are part of the extracted GEO metadata and drop all rows of sra_data that contain those IDs
 
 public_geo_data = pandas.read_csv(f"{args.input_dir}/geoSeries.txt")
 
-srp_ids_geo = public_geo_data["SRP"]
+srp_ids_geo = list(public_geo_data["SRP"])
+bioproject_ids_geo = list(public_geo_data["BioProject"])
 
 # ~ is the negation ...
 temp_sra_data = pre_sra_data[~pre_sra_data['study_accession'].isin(srp_ids_geo)]
 
-#srps = list(set(temp_sra_data["study_accession"]))
-#print(len(srps))
-###### Only once ######
-#already_sra_data = pandas.read_csv(f"search_results.txt", sep="\t")
-#temp_sra_data = already_sra_data[~already_sra_data['study_accession'].isin(srp_ids_geo)]
-#srps = list(set(temp_sra_data["study_accession"]))
-#print(len(srps))
-###### Only once ######
-
 srps = list(set(temp_sra_data["study_accession"]))
-
 web = SRAweb()
 
 #perc_calc = compute_percentage(5, len(srps))
@@ -78,14 +121,22 @@ sra_study_data = pandas.DataFrame(columns = sra_study_columns)
 sra_run_columns = sra_col_sel.get_run_columns()
 sra_run_container = {}
 sra_run_data = pandas.DataFrame(columns = sra_run_columns)
-
+#######
+#srps = srps[:1000]
+#######
 failed_srps = []
 con_ext = sra_container_extraction(virus_list, f"{args.config}/config_sra_relevance.txt")
 progress_bar = tqdm(total=len(srps), desc="Processing", unit="iteration")
 for srp in srps:
 	try:
 		progress_bar.update(1)
-		df = web.sra_metadata(srp, detailed = True)  
+		df = web.sra_metadata(srp, detailed = True)
+  
+		if "bioproject" in df.columns:
+			bioproject_id = df["bioproject"][0]
+			if pandas.notna(bioproject_id) and bioproject_id in bioproject_ids_geo:
+				continue
+
 		run_container_list = []
 
 		for index, row in df.iterrows():
@@ -162,12 +213,21 @@ for srp in srps:
 
 progress_bar.close()
 
+with open(f"{args.output_dir}/failed_srps.log", "w") as file:
+        for failed_srp in failed_srps:
+            file.write(f"{failed_srp}\n")
+file.close()
+
 if len(failed_srps) == 0:
     print("All SRPs were extracted successfully.")
 else:
-    print(f"Extraction of these SRPs has failed: {failed_srps}")
+    print(f"The extraction of {len(failed_srps)} SPRs have failed. The corresponding SRPs can be found in {args.output_dir}/failed_srps.log. Please run updateSra.py to extract them again.")
     
 sra_study_data = sra_study_data.sort_values(by="study_accession", ascending=False)
 
-sra_study_data.to_csv(f"{args.output_dir}/sraStudyData2.txt", sep = "\t", index=False, na_rep="NA")
-sra_run_data.to_csv(f"{args.output_dir}/sraRunData2.txt", sep = "\t", index=False, na_rep="NA")
+sra_study_data.to_csv(f"{args.output_dir}/sraStudyData.txt", sep = "\t", index=False, na_rep="NA")
+sra_run_data.to_csv(f"{args.output_dir}/sraRunData.txt", sep = "\t", index=False, na_rep="NA")
+
+# Initialize update file for the current date 
+with open(f"{args.input_dir}/last.update_sra.txt", "w") as file:          
+	file.write(str(bupt.get_time()).strip() + "\n")

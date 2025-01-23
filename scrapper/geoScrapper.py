@@ -45,7 +45,7 @@ for cat in virus_categories:
     current_filter = vrd.get_filter_for_category(cat)
     print(f"Scrapping all {cat}.")
     current_gse_obj = Finder(filters = current_filter)
-    current_gse_list = current_gse_obj.get_gse_last_3_month()
+    current_gse_list = current_gse_obj.get_gse_all()
     gse_list = gse_list + current_gse_list
 
 gse_list = list(set(gse_list))
@@ -80,10 +80,10 @@ progress_bar = tqdm(total=len(gse_list), desc="Processing", unit="iteration")
 #perc_calc = compute_percentage(10, len(gse_list))
 # Iterating over all gse
 for gse in gse_list:
+    progress_bar.update(1)
     skipper = False
     
     try:
-        progress_bar.update(1)
         # Provide information about the progress
         #percentage = perc_calc.get_percentage(gse_list.index(gse))
         #if percentage != "":
@@ -146,25 +146,34 @@ for gse in gse_list:
                             series_container["NCBI_generated_data"] = [f"https://www.ncbi.nlm.nih.gov/geo/download/?acc={gse}"]
                             series_container["ARCHS4"] = [f"https://maayanlab.cloud/archs4/series/{gse}"]
                             
-                            # Add SRP to compare with results from SRA scrapper. SRPs don't have columns in the meta data files, so we have to extract it from the Series_relation
+                            # Add SRP and Bioproject to compare with results from SRA scrapper. SRPsand BioProjects don't have columns in the meta data files, so we have to extract it from the Series_relation
                             if "Series_relation" in series_container.keys() and len(series_container["Series_relation"]) > 0:
+                                matched_srp = False
+                                matched_bio = False
                                 for entry in series_container["Series_relation"]:
                                     entry = str(entry)
                                     srp_match = re.search(r'SRP\d+', entry)
+                                    bio_match = re.search(r'(PRJ\w{2}\d+)', entry)
                                     
                                     if srp_match:
                                         srp = srp_match.group()
                                         series_container["SRP"] = [srp]
+                                        matched_srp = True
+                                    elif bio_match:
+                                        bioproject_id = bio_match.group(1)
+                                        series_container["BioProject"] = [bioproject_id]
+                                        matched_bio = True
                                     else:
-                                        series_container["SRP"] = ["NA"]
-                                    
-
+                                        if not matched_srp:
+                                            series_container["SRP"] = ["NA"]
+                                        if not matched_bio:
+                                            series_container["BioProject"] = ["NA"]
                             # Extract series metadata from container
                             new_row = con_ext.get_new_series_row(series_container, gse)
 
                             # Check if series/gse is relevant according to the config file
                             if not new_row:
-                                print(f"Skipped: {gse}")
+                                #print(f"Skipped: {gse}")
                                 skipper = True
                                 break
                             
@@ -194,17 +203,28 @@ for gse in gse_list:
                             series_container["NCBI_generated_data"] = [f"https://www.ncbi.nlm.nih.gov/geo/download/?acc={gse}"]
                             series_container["ARCHS4"] = [f"https://maayanlab.cloud/archs4/series/{gse}"]
                             
-                            # Add SRP to compare with results from SRA scrapper. SRPs don't have columns in the meta data files, so we have to extract it from the Series_relation
+                            # Add SRP and BioProject to compare with results from SRA scrapper. SRPs and BioProjects don't have columns in the meta data files, so we have to extract it from the Series_relation
                             if "Series_relation" in series_container.keys() and len(series_container["Series_relation"]) > 0:
+                                matched_srp = False
+                                matched_bio = False
                                 for entry in series_container["Series_relation"]:
                                     entry = str(entry)
                                     srp_match = re.search(r'SRP\d+', entry)
+                                    bio_match = re.search(r'(PRJ\w{2}\d+)', entry)
                                     
                                     if srp_match:
                                         srp = srp_match.group()
                                         series_container["SRP"] = [srp]
+                                        matched_srp = True
+                                    elif bio_match:
+                                        bioproject_id = bio_match.group(1)
+                                        series_container["BioProject"] = [bioproject_id]
+                                        matched_bio = True
                                     else:
-                                        series_container["SRP"] = ["NA"]
+                                        if not matched_srp:
+                                            series_container["SRP"] = ["NA"]
+                                        if not matched_bio:
+                                            series_container["BioProject"] = ["NA"]
                             
                             # This seems to be the first sample. So the series container contains metadata to add in dataframe
                             # Extract series metadata from container
@@ -213,7 +233,7 @@ for gse in gse_list:
                             # Check if series/gse is relevant according to the config file
                             if not new_row:
                                 skipper = True
-                                print(f"Skipped: {gse}")
+                                #print(f"Skipped: {gse}")
                                 break
 
                             # Add metadata to dataframe
@@ -271,15 +291,21 @@ sample_data["Sample_characteristics_ch1"] = sample_data["Sample_characteristics_
 
 series_data = series_data.sort_values(by="Series_geo_accession")
 
-series_data.to_csv(f"{args.output_dir}/geoSeries2.txt", index = False, na_rep = "NA")
-sample_data.to_csv(f"{args.output_dir}/geoSamples2.txt", index = False, na_rep='NA')
+series_data.to_csv(f"{args.output_dir}/geoSeries.txt", index = False, na_rep = "NA")
+sample_data.to_csv(f"{args.output_dir}/geoSamples.txt", index = False, na_rep='NA')
 
-formated_time = bupt.get_time()
+with open(f"{args.output_dir}/failed_gses.log", "w") as file:
+        for fg in failed_gse:
+            file.write(f"{fg}\n")
+file.close()
 
-if len(f"Extraction of these GSE has failed: {failed_gse}") > 0:
-    print(failed_gse)
+if len(failed_gse) > 0:
+    print(f"The extraction of some GSEs have failed. The corresponding GSEs can be found in {args.output_dir}/failed_gses.log.")
 else:
-    print("All GSE were extracted successfully.")
+    print("All GSEs were extracted successfully.")
 
-                
+
+# Initialize update file for the current date 
+with open(f"{args.output_dir}/last.update_geo.txt", "w") as file:          
+	file.write(str(bupt.get_time()).strip() + "\n")    
 
