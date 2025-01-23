@@ -75,7 +75,7 @@ This directory contains one additional directory and a few files (reduced exampl
     
     sraRunData.txt: TSV file containing run metadata from SRA data.
     
-    webpage_to_zip: see below
+    webpage_to_zip: see below, not included in the project due to size constraints
     
 
 #### Directory "webpage_to_zip"
