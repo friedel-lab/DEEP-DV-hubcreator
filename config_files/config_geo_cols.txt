@@ -30,6 +30,7 @@ Series_relation: y
 NCBI_generated_data: y
 ARCHS4: y
 SRP: y
+BioProject: n
 
 >Sample columns:
 

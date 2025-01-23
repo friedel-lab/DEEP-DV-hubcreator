@@ -20,3 +20,10 @@ GSE100611	ATAC-seq on HSV-1 infected primary human fibroblasts (time course)	GEO
 GSE101731	ATAC-seq of HFF exposed to salt and heat stress	GEO_ATACseq_stress.xls	Public	1.0	Lars Dölken/Caroline Friedel
 GSE59717	Wide-spread disruption of transcription termination in HSV-1 infection:  Next generation sequencing of total and newly transcribed (4sU-RNA) RNA	GEO_HSV_total_4sU.xls	Public	1.0	Lars Dölken/Caroline Friedel
 GSE60040	Wide-spread disruption of transcription termination in HSV-1 infection: Next-generation sequencing of translational activityd by ribosome profiling	GEO_HSV_RibosomeProfiling.xls	Public	1.0	Lars Dölken/Caroline Friedel
+GSE212820	HSV-1 infection induces a delay of promoter-proximal pausing linked to a shift of H2A.Z-containing +1 nucleosomes (ATAC-seq)	GEOSubmissionMutantsAll_with_ICP4.xlsx	Private	2.0	Lars Dölken/Caroline Friedel
+GSE212867	HSV-1 infection induces a delay of promoter-proximal pausing linked to a shift of H2A.Z-containing +1 nucleosomes (H2A.Z ChIPmentation)	GEOSubmission_ChIPMentation_H2A_Z.xlsx	Private	2.0	Lars Dölken/Caroline Friedel
+GSE224855	Classification of IRF3- vs ISGF3-dependent gene induction in murine fibroblasts	P01_SLAMseq_MEF-IRF3vsISGF3.xlsx	Public	2.0	Melanie Brinkmann
+GSE224852	Effect of MCMV M35 on global gene expression during PRR signalling in murine fibroblasts	P01_SLAMseq_iMEF-M35vsEV.xlsx	Public	2.0	Melanie Brinkmann
+NA	Identification of transcriptional signatures that influence the outcome of HHV-6A infection (scRNA-seq)	seq_HHV6_scRNAseq.xlsx	Private	2.0	Benedikt Kaufer/Dilan Serdar
+NA	Identification of transcriptional signatures that influence the outcome of HHV-6A infection (RNA-seq)	seq_HHV6_RNAseq.xlsx	Private	2.0	Benedikt Kaufer/Dilan Serdar
+NA	Viral RNA levels are reduced in the absence of the tegument protein US11	US11null_SLAMseq_deep-dv.xlsx	Private	2.0	P03/Niclas Barke
