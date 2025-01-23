@@ -31,15 +31,22 @@ This project contains the following directories: "config_files", "python_classes
 This directory contains all config files that can be used to flexibly adjust/modify the output. For more details, look at the discription (in the header) of the files.
 
     config_geo_cols.txt: You can select which columns should be shown for series and samples on the GEO data webpage.
+    
     config_internal_cols.txt: You can select which columns should be shown for series and samples on the internal data webpage.
+    
     config_sra_cols.txt: You can select which columns should be shown for studies and runs on the SRA data webpage.
+    
     config_geo_relevance.txt: You can select which columns should be used, to check whether a series is relevant or which virus it corresponds to for the GEO data.
+    
     config_internal_relevance.txt: You can select which columns should be used, to check for a series which virus it corresponds to for the internal data.
+    
     config_sra_relevance.txt: You can select which columns should be used, to check whether a series is relevant or which virus it corresponds to for the SRA data.
+    
     config_virus.txt: This file contains all viruses, categories and their synonyms which are used to filter and scrap public geo data.
+    
     config_question.txt: This file contains questions and answers for the Q&A webpage, which is linked to the other data webpages.
-    config_webpage.txt: You can choose, which of the webpages should get created or if all webpages should get created. Additionaly you can specify the number of
-        parallel displayed series on one page. 
+    
+    config_webpage.txt: You can choose, which of the webpages should get created or if all webpages should get created. Additionaly you can specify the number of parallel displayed series on one page. 
 
 ### Directory "python_classes"
 
@@ -83,36 +90,20 @@ This directory contains the webpages, which are build by "build_webpage.py". Whe
 This directory contains the python files which scrap/extract the metadata. 
 
     internalScrapper.py: This python file accesses the folder "GEOTabellen", the location of the internal excel files. It then extracts the metadata from those excel files and saves it in "result_files" as "internalSeries.txt" and "internalSamples.txt". 
-    
-    -> python internalScrapper.py 
-    
-    (For additional parameters execute python internalScrapper.py --help or see 3. down below)
 
     geoScrapper.py: This python file downloads metadata from the "Genome expression omnibus" and extracts it from these files. The extracted metadata is then saved in  "result_files" as "geoSeries.txt" and "geoSamples.txt". It is possible that the extraction for some GSEs fails due to time out exceptions. These GSEs are saved by the geoScrapper and a second attempt to extract these is performed when updating the GEO metadata. 
-    -> python geoScrapper.py
-    (For additional parameters execute python geoScrapper.py --help or see 3. down below)
 
     sraScrapper.py: This python file downloads metadata from the SRA by using the package pysradb and extracts it. The extracted metadata is then saved in "result_files" as "sraSeries.txt" and "sraSamples.txt". Please note that only metadata for SRA studies and runs is saved, where the corresponding SRP and BioProject ID is not present in the extracted GEO metadata. It is possible that the extraction for some SRPs fails due to time out exceptions. These SRPs a saved by the sraScrapper and a second attempt to extract these is performed when updating the SRA metadata. 
-    -> python sraScrapper.py
-    (For additional parameters execute python sraScrapper.py --help or see 3. down below)
 
     updateGeo.py: This python file updates the files "geoSeries.txt" and "geoSamples.txt" from the directory "result_files". You can specify the time-range for the update.
     In default settings, update.py will update the data with those GSE that where added or modified in the last week in "Gene expression omnibus".
-    -> python updateGeo.py 
-    (For additional parameters execute python updateGeo.py --help or see 3. down below)
 
     updateSra.py: This python file updates the files "sraSeries.txt" and "sraSamples.txt" from the directory "result_files". You can specify the time-range for the update.
     In default settings, updateSra.py will update the data with those SRP that where added or modified in the last week in SRA.
-    -> python updateSra.py 
-    (For additional parameters execute python updateSra.py --help or see 3. down below)
 
 ### Directory "webpage"
 
-    This directory contains the python file "build_webpage.py". This file creates the webpages you specified in the config file "config_webpage.txt" with the columns
-    you specified in the config files "config_geo_cols.txt", "config_sra_cols" and "config_internal_cols.txt". The resulting webpages can the be found in 
-    "result_files/webpage_to_zip/". Also the Q&A webpage is created.
-    -> python build_webpage.py
-    (For additional parameters execute python build_webpage.py --help or see 3. down below)
+    This directory contains the python file "build_webpage.py". This file creates the webpages you specified in the config file "config_webpage.txt" with the columns you specified in the config files "config_geo_cols.txt", "config_sra_cols" and "config_internal_cols.txt". The resulting webpages can the be found in "result_files/webpage_to_zip/". Also the Q&A webpage is created.
 
 
 ## Execution of the python files:
