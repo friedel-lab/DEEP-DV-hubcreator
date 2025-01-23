@@ -108,7 +108,7 @@ This directory contains the python files which scrap/extract the metadata.
 
 ## Execution of the python files:
 
-## Execution of updateGeo.py:
+### Execution of updateGeo.py:
 
         python updateGeo.py \
             -config config_files \
@@ -126,7 +126,7 @@ This directory contains the python files which scrap/extract the metadata.
             -time: Select a time range to get updates - lw for last week (you don't need to do this, since last week is the default setting), lm for last month, l3m for last 
             3 monts, ldx for last x days (e.g. ld9 for last 9 days).
 
-## Execution of updateSra.py:
+### Execution of updateSra.py:
 
         python updateSra.py \
             -config config_files \
@@ -144,7 +144,7 @@ This directory contains the python files which scrap/extract the metadata.
             -time: Select a time range to get updates - lw for last week (you don't need to do this, since last week is the default setting), lm for last month, l3m for last 
             3 monts, ldx for last x days (e.g. ld9 for last 9 days).
     
-## Execution of internalScrapper.py:
+### Execution of internalScrapper.py:
 
         python internalScrapper.py \
             -config config_files \
@@ -159,7 +159,7 @@ This directory contains the python files which scrap/extract the metadata.
             -tab_folder: Path to the directory containing the excel files ("GEOTabellen") for internal metadata
             -output_dir: Path to the directory, where the output files should be saved
 
-## Execution of build_webpage.py:
+### Execution of build_webpage.py:
 
         python build_webpage.py \
             -config config_files \
