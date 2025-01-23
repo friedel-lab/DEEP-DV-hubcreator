@@ -1,4 +1,4 @@
-README
+# README
 
 Required software:
 * Conda, e.g. miniforge (https://github.com/conda-forge/miniforge)
@@ -9,30 +9,24 @@ To run the DEEP-DV hub creator you need to first create the conda environment: `
 To activate the environment you then have to activate the environment: `conda activate hubcreator`
 
 
-1. Workflow
+## Workflow
 
 How this all works: 
-    1. Metadata is scraped by the scrappers ("internalScrapper.py", "geoScrapper.py" and "sraScrapper.py"). The extracted metadata is saved by the scrappers in 
-    comma or tab separated files ("internalSeries.txt", "internalSamples.txt", "geoSeries.txt", "geoSamples.txt", "sraStudyData.txt" and "sraRunData.txt"). 
-    2. The python file "build_webpage.py" is then used to build the webpage(s). Therefore "build_webpage.py" reads in the CSV/TSV files containing the metadata and builds  
-    the content of the webpage(s).
-    3. At last the resulting webpages can be zipped and shared. 
+1. Metadata is scraped by the scrappers ("internalScrapper.py", "geoScrapper.py" and "sraScrapper.py"). The extracted metadata is saved by the scrappers in comma or tab separated files ("internalSeries.txt", "internalSamples.txt", "geoSeries.txt", "geoSamples.txt", "sraStudyData.txt" and "sraRunData.txt"). 
+2. The python file "build_webpage.py" is then used to build the webpage(s). Therefore "build_webpage.py" reads in the CSV/TSV files containing the metadata and builds the content of the webpage(s).
+3. At last the resulting webpages can be zipped and shared. 
 
-    Info: The python files "updateGeo.py" and "updateSra.py" are highly recommended to use, since "geoScrapper.py" takes 4-5 hours of runtime and "sraScrapper.py" more than 10 hours.
-    Also when re-running "geoScrapper.py" or "sraScrapper.py", it will  extract the exact same series and samples like before, apart of those, which are uploaded or updated on 
-    "Gene expression omnibus" or the "Sequence read archive" since the last invocation of "geoScrapper.py" or "sraScrapper.py" (so much of the work would unnecessarily be done twice). To save time, use 
-    "updateGeo.py" or "updateSra.py" and use the default time setting or a specified time setting (see down below) to simply update the already existing metadata files 
-    (runtime ~ less than one minute for update of last week, runtime ~ 1 minute for update of last three months). There is no update file for "internalScrapper.py", since 
-    "internalScrapper.py" has a runtime of less than one minute. Just run all series again, to update.
+Info: The python files "updateGeo.py" and "updateSra.py" are highly recommended to use, since "geoScrapper.py" takes 4-5 hours of runtime and "sraScrapper.py" more than 10 hours. Also when re-running "geoScrapper.py" or "sraScrapper.py", it will  extract the exact same series and samples like before, apart of those, which are uploaded or updated on "Gene expression omnibus" or the "Sequence read archive" since the last invocation of "geoScrapper.py" or "sraScrapper.py" (so much of the work would unnecessarily be done twice). To save time, use "updateGeo.py" or "updateSra.py" and use the default time setting or a specified time setting (see down below) to simply update the already existing metadata files (runtime ~ less than one minute for update of last week, runtime ~ 1 minute for update of last three months). There is no update file for "internalScrapper.py", since 
+"internalScrapper.py" has a runtime of less than one minute. Just run all series again, to update.
    
-     Please note: Execute the geoScrapper BEFORE the sraScrapper and the updateGeo file BEFORE the updateSra file, respectively.
+Please note: Execute the geoScrapper BEFORE the sraScrapper and the updateGeo file BEFORE the updateSra file, respectively.
 
-2. Structure and directories
+## Structure and directories
 
 This project contains the following directories: "config_files", "python_classes", "result_files", "scrapper" and
 "webpage". In the following sections, all directories, their files and their usage are introduced.
 
-2.1 Directory "config_files"
+### Directory "config_files"
 
 This directory contains all config files that can be used to flexibly adjust/modify the output. For more details, look at the discription (in the header) of the files.
 
@@ -47,7 +41,7 @@ This directory contains all config files that can be used to flexibly adjust/mod
     config_webpage.txt: You can choose, which of the webpages should get created or if all webpages should get created. Additionaly you can specify the number of
         parallel displayed series on one page. 
 
-2.2 Directory "python_classes"
+### Directory "python_classes"
 
 This directory contains python classes that are used by all python files from the project. These classes serve the purpose to reduce redundant code. Here is no python file,
 which has to be invoked for the workflow.
@@ -56,8 +50,7 @@ which has to be invoked for the workflow.
     excelScrapper_classes.py: Python file containing the classes, which are used by "excelScrapper.py" and "build_webpage.py"
     geoScrapper_classes.py: Python file containing the classes, which are used by "softScrapper.py", "update.py" and "build_webpage.py"
 
-
-2.3 Directory "result_files", contains output files
+### Directory "result_files", contains output files
 
 This directory contains one additional directory and a few files (reduced example files are included).
 
@@ -75,7 +68,7 @@ This directory contains one additional directory and a few files (reduced exampl
     -> zip -r yourZipName.zip webpage_to_zip
 
 
-2.4 Directory "scrapper"
+### Directory "scrapper"
 
 This directory contains the python files which scrap/extract the metadata. 
 
@@ -104,8 +97,7 @@ This directory contains the python files which scrap/extract the metadata.
     -> python updateSra.py 
     (For additional parameters execute python updateSra.py --help or see 3. down below)
 
-
-2.5 Directory "webpage"
+### Directory "webpage"
 
     This directory contains the python file "build_webpage.py". This file creates the webpages you specified in the config file "config_webpage.txt" with the columns
     you specified in the config files "config_geo_cols.txt", "config_sra_cols" and "config_internal_cols.txt". The resulting webpages can the be found in 
@@ -114,9 +106,9 @@ This directory contains the python files which scrap/extract the metadata.
     (For additional parameters execute python build_webpage.py --help or see 3. down below)
 
 
-3. Execution of the python files:
+## Execution of the python files:
 
-    3.1 Execution of updateGeo.py:
+## Execution of updateGeo.py:
 
         python updateGeo.py \
             -config config_files \
@@ -134,7 +126,7 @@ This directory contains the python files which scrap/extract the metadata.
             -time: Select a time range to get updates - lw for last week (you don't need to do this, since last week is the default setting), lm for last month, l3m for last 
             3 monts, ldx for last x days (e.g. ld9 for last 9 days).
 
-    3.2 Execution of updateSra.py:
+## Execution of updateSra.py:
 
         python updateSra.py \
             -config config_files \
@@ -152,7 +144,7 @@ This directory contains the python files which scrap/extract the metadata.
             -time: Select a time range to get updates - lw for last week (you don't need to do this, since last week is the default setting), lm for last month, l3m for last 
             3 monts, ldx for last x days (e.g. ld9 for last 9 days).
     
-    3.3 Execution of internalScrapper.py:
+## Execution of internalScrapper.py:
 
         python internalScrapper.py \
             -config config_files \
@@ -167,7 +159,7 @@ This directory contains the python files which scrap/extract the metadata.
             -tab_folder: Path to the directory containing the excel files ("GEOTabellen") for internal metadata
             -output_dir: Path to the directory, where the output files should be saved
 
-    3.3 Execution of build_webpage.py:
+## Execution of build_webpage.py:
 
         python build_webpage.py \
             -config config_files \
