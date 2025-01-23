@@ -12,23 +12,25 @@ To activate the environment you then have to activate the environment: `conda ac
 1. Workflow
 
 How this all works: 
-    1. Meta data gets scrapped from the scrappers ("internalScrapper.py", "geoScrapper.py" and "sraScrapper.py"). The extracted meta data is saved by the scrappers in 
+    1. Metadata is scraped by the scrappers ("internalScrapper.py", "geoScrapper.py" and "sraScrapper.py"). The extracted metadata is saved by the scrappers in 
     comma or tab separated files ("internalSeries.txt", "internalSamples.txt", "geoSeries.txt", "geoSamples.txt", "sraStudyData.txt" and "sraRunData.txt"). 
-    2. The python file "build_webpage.py" is then used to build the webpage(s). Therefore "build_webpage.py" reads in the CSV/TSV files containing the meta data and builds  
+    2. The python file "build_webpage.py" is then used to build the webpage(s). Therefore "build_webpage.py" reads in the CSV/TSV files containing the metadata and builds  
     the content of the webpage(s).
     3. At last the resulting webpages can be zipped and shared. 
 
     Info: The python files "updateGeo.py" and "updateSra.py" are highly recommended to use, since "geoScrapper.py" takes 4-5 hours of runtime and "sraScrapper.py" more than 10 hours.
     Also when re-running "geoScrapper.py" or "sraScrapper.py", it will  extract the exact same series and samples like before, apart of those, which are uploaded or updated on 
-    "Gene expression omnibus" since the last invocation of "geoScrapper.py" or "sraScrapper.py" (so much of the work would unnecessarily be done twice). To save time, use 
-    "updateGeo.py" or "updateSra.py" and use the default time setting or a specified time setting (see down below) to simply update the already existing  meta data files 
+    "Gene expression omnibus" or the "Sequence read archive" since the last invocation of "geoScrapper.py" or "sraScrapper.py" (so much of the work would unnecessarily be done twice). To save time, use 
+    "updateGeo.py" or "updateSra.py" and use the default time setting or a specified time setting (see down below) to simply update the already existing metadata files 
     (runtime ~ less than one minute for update of last week, runtime ~ 1 minute for update of last three months). There is no update file for "internalScrapper.py", since 
     "internalScrapper.py" has a runtime of less than one minute. Just run all series again, to update.
+   
+     Please note: Execute the geoScrapper BEFORE the sraScrapper and the updateGeo file BEFORE the updateSra file, respectively.
 
 2. Structure and directories
 
-All important files are in the directory "hiwi_project". This directory contains a few other sub-directories: "config_files", "python_classes", "result_files", "scrapper" and
-"webpage". In the following sections, I will introduce all directories, their files and their usage.
+This project contains the following directories: "config_files", "python_classes", "result_files", "scrapper" and
+"webpage". In the following sections, all directories, their files and their usage are introduced.
 
 2.1 Directory "config_files"
 
@@ -59,12 +61,12 @@ which has to be invoked for the workflow.
 
 This directory contains one additional directory and a few files (reduced example files are included).
 
-    geoSeries.txt: CSV file containing series meta data from public GEO data.
-    geoSamples.txt: CSV file containing sample meta data from public GEO data.
-    internalSeries.txt: CSV file containing series meta data from local excel files.
-    internalSamples.txt: CSV file containing sample meta data from local excel files.
-    sraStudyData.txt: TSV file containing study meta data from SRA data.
-    sraRunData.txt: TSV file containing run meta data from SRA data.
+    geoSeries.txt: CSV file containing series metadata from public GEO data.
+    geoSamples.txt: CSV file containing sample metadata from public GEO data.
+    internalSeries.txt: CSV file containing series metadata from local excel files.
+    internalSamples.txt: CSV file containing sample metadata from local excel files.
+    sraStudyData.txt: TSV file containing study metadata from SRA data.
+    sraRunData.txt: TSV file containing run metadata from SRA data.
     directory "webpage_to_zip": Will be explained in 2.3.1
 
     2.3.1 Directory "webpage_to_zip"
@@ -75,20 +77,20 @@ This directory contains one additional directory and a few files (reduced exampl
 
 2.4 Directory "scrapper"
 
-This directory contains the python files which scrap/extract the meta data. 
+This directory contains the python files which scrap/extract the metadata. 
 
-    internalScrapper.py: This python file accesses the folder "GEOTabellen", the location of the internal excel files. It then extracts the meta data from those excel files and
+    internalScrapper.py: This python file accesses the folder "GEOTabellen", the location of the internal excel files. It then extracts the metadata from those excel files and
     saves it in "result_files" as "internalSeries.txt" and "internalSamples.txt". 
     -> python internalScrapper.py 
     (For additional parameters execute python internalScrapper.py --help or see 3. down below)
 
-    geoScrapper.py: This python file downloads meta data from the "Genome expression omnibus" and extracts it from these files. The extracted meta data is then saved in 
-    "result_files" as "geoSeries.txt" and "geoSamples.txt".
+    geoScrapper.py: This python file downloads metadata from the "Genome expression omnibus" and extracts it from these files. The extracted metadata is then saved in 
+    "result_files" as "geoSeries.txt" and "geoSamples.txt". It is possible that the extraction for some GSEs fails due to time out exceptions. These GSEs are   
+    saved by the geoScrapper and a second attempt to extract these is performed when updating the GEO metadata. 
     -> python geoScrapper.py
     (For additional parameters execute python geoScrapper.py --help or see 3. down below)
 
-    sraScrapper.py: This python file downloads meta data from the SRA by using the package pysradb and extracts it. The extracted meta data is then saved in 
-    "result_files" as "sraSeries.txt" and "sraSamples.txt".
+    sraScrapper.py: This python file downloads metadata from the SRA by using the package pysradb and extracts it. The extracted metadata is then saved in "result_files" as "sraSeries.txt" and "sraSamples.txt". Please note that only metadata for SRA studies and runs is saved, where the corresponding SRP and BioProject ID is not present in the extracted GEO metadata. It is possible that the extraction for some SRPs fails due to time out exceptions. These SRPs a saved by the sraScrapper and a second attempt to extract these is performed when updating the SRA metadata. 
     -> python sraScrapper.py
     (For additional parameters execute python sraScrapper.py --help or see 3. down below)
 
@@ -114,17 +116,13 @@ This directory contains the python files which scrap/extract the meta data.
 
 3. Execution of the python files:
 
-    See down below, if you want to try the execution of the python files. I recommend to not run the geoScrapper.py and sraScrapper.py, since they need around 5 hours
-    respectively 23 hours (!). I would instead try the corresponding update files, since they have the exact same code regarding the extraction of metadata. The only 
-    difference is that they don't save the metadata in new dataframes. Instead they are inserting/replacing series/studies in the already existing dataframes. 
-
     3.1 Execution of updateGeo.py:
 
         python updateGeo.py \
-            -config /home/proj/projekte/sequencing/Illumina/DEEP-DV/hub/hiwi_project/config_files \
-            -classes /home/proj/projekte/sequencing/Illumina/DEEP-DV/hub/hiwi_project/python_classes \
+            -config config_files \
+            -classes python_classes \
             -output_dir output \
-            -input_dir /home/proj/projekte/sequencing/Illumina/DEEP-DV/hub/hiwi_project/result_files \
+            -input_dir result_files \
             -time lm
         
 
@@ -139,10 +137,10 @@ This directory contains the python files which scrap/extract the meta data.
     3.2 Execution of updateSra.py:
 
         python updateSra.py \
-            -config /home/proj/projekte/sequencing/Illumina/DEEP-DV/hub/hiwi_project/config_files \
-            -classes /home/proj/projekte/sequencing/Illumina/DEEP-DV/hub/hiwi_project/python_classes \
+            -config config_files \
+            -classes python_classes \
             -output_dir output \
-            -input_dir /home/proj/projekte/sequencing/Illumina/DEEP-DV/hub/hiwi_project/result_files \
+            -input_dir result_files \
             -time lm
         
 
@@ -157,8 +155,8 @@ This directory contains the python files which scrap/extract the meta data.
     3.3 Execution of internalScrapper.py:
 
         python internalScrapper.py \
-            -config /home/proj/projekte/sequencing/Illumina/DEEP-DV/hub/hiwi_project/config_files \
-            -classes /home/proj/projekte/sequencing/Illumina/DEEP-DV/hub/hiwi_project/python_classes \
+            -config config_files \
+            -classes python_classes \
             -tab_folder /home/proj/projekte/sequencing/Illumina/DEEP-DV/hub/GEOTabellen \
             -output_dir output
         
@@ -172,10 +170,10 @@ This directory contains the python files which scrap/extract the meta data.
     3.3 Execution of build_webpage.py:
 
         python build_webpage.py \
-            -config /home/proj/projekte/sequencing/Illumina/DEEP-DV/hub/hiwi_project/config_files \
-            -classes /home/proj/projekte/sequencing/Illumina/DEEP-DV/hub/hiwi_project/python_classes \
+            -config config_files \
+            -classes python_classes \
             -output_dir output \
-            -input_dir /home/proj/projekte/sequencing/Illumina/DEEP-DV/hub/hiwi_project/result_files
+            -input_dir result_files
 
         
         Parameters explained (see also python updateSra.py --help):
