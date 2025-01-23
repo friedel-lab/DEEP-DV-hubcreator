@@ -46,8 +46,10 @@ This directory contains all config files that can be used to flexibly adjust/mod
 This directory contains python classes that are used by all python files from the project. These classes serve the purpose to reduce redundant code. Here is no python file,
 which has to be invoked for the workflow.
 
-    __pychache__: This is an automatically created directory. It is not important.
+    __pychache__: This is an automatically created directory. It is not important
+    
     excelScrapper_classes.py: Python file containing the classes, which are used by "excelScrapper.py" and "build_webpage.py"
+    
     geoScrapper_classes.py: Python file containing the classes, which are used by "softScrapper.py", "update.py" and "build_webpage.py"
 
 ### Directory "result_files", contains output files
@@ -55,31 +57,38 @@ which has to be invoked for the workflow.
 This directory contains one additional directory and a few files (reduced example files are included).
 
     geoSeries.txt: CSV file containing series metadata from public GEO data.
+    
     geoSamples.txt: CSV file containing sample metadata from public GEO data.
+    
     internalSeries.txt: CSV file containing series metadata from local excel files.
+    
     internalSamples.txt: CSV file containing sample metadata from local excel files.
+    
     sraStudyData.txt: TSV file containing study metadata from SRA data.
+    
     sraRunData.txt: TSV file containing run metadata from SRA data.
-    directory "webpage_to_zip": Will be explained in 2.3.1
+    
+    webpage_to_zip: see below
+    
 
-    2.3.1 Directory "webpage_to_zip"
+#### Directory "webpage_to_zip"
 
-    This directory contains the webpages, which are build by "build_webpage.py". When you want to zip the webpages, so you can share it, just zip this folder.
-    -> zip -r yourZipName.zip webpage_to_zip
+This directory contains the webpages, which are build by "build_webpage.py". When you want to zip the webpages, so you can share it, just zip this folder.
+
+    zip -r yourZipName.zip webpage_to_zip
 
 
 ### Directory "scrapper"
 
 This directory contains the python files which scrap/extract the metadata. 
 
-    internalScrapper.py: This python file accesses the folder "GEOTabellen", the location of the internal excel files. It then extracts the metadata from those excel files and
-    saves it in "result_files" as "internalSeries.txt" and "internalSamples.txt". 
+    internalScrapper.py: This python file accesses the folder "GEOTabellen", the location of the internal excel files. It then extracts the metadata from those excel files and saves it in "result_files" as "internalSeries.txt" and "internalSamples.txt". 
+    
     -> python internalScrapper.py 
+    
     (For additional parameters execute python internalScrapper.py --help or see 3. down below)
 
-    geoScrapper.py: This python file downloads metadata from the "Genome expression omnibus" and extracts it from these files. The extracted metadata is then saved in 
-    "result_files" as "geoSeries.txt" and "geoSamples.txt". It is possible that the extraction for some GSEs fails due to time out exceptions. These GSEs are   
-    saved by the geoScrapper and a second attempt to extract these is performed when updating the GEO metadata. 
+    geoScrapper.py: This python file downloads metadata from the "Genome expression omnibus" and extracts it from these files. The extracted metadata is then saved in  "result_files" as "geoSeries.txt" and "geoSamples.txt". It is possible that the extraction for some GSEs fails due to time out exceptions. These GSEs are saved by the geoScrapper and a second attempt to extract these is performed when updating the GEO metadata. 
     -> python geoScrapper.py
     (For additional parameters execute python geoScrapper.py --help or see 3. down below)
 
